@@ -15,7 +15,7 @@ namespace JsonDatabaseTestbed.Commands
 
         public string Description => "\tget\t\tGet";
         public Type ParentCommandType => null;
-        public bool CanHandle(string command) => command.RoughlyStartsWith("get ");
+        public bool CanHandle(string command) => command.IsRoughly("get") || command.RoughlyStartsWith("get ");
 
         public async Task Execute(string command)
         {
