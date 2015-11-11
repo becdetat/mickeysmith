@@ -152,6 +152,11 @@ namespace JsonDatabaseTestbed
             }
         }
 
+        public static void DeepDump(object value, int depth = 50)
+        {
+            WriteLine(ObjectDumper.Dump(value, depth));
+        }
+
         public static void DumpCollection(string name, IEnumerable<object> values)
         {
             var array = values.ToArray();

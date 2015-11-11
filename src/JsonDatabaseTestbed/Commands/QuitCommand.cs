@@ -10,7 +10,7 @@ namespace JsonDatabaseTestbed.Commands
             return command.IsRoughly("q", "quit", "exit");
         }
 
-        public Task Execute()
+        public Task Execute(string command)
         {
             Cmd.WriteLine("Closing");
             Environment.Exit(0);

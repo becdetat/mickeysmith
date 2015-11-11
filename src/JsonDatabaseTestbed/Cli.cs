@@ -19,7 +19,7 @@ namespace JsonDatabaseTestbed
 
     public interface ILeafCliCommand : ICliCommand
     {
-        Task Execute();
+        Task Execute(string command);
     }
 
     public static class CliAppLoop
@@ -76,7 +76,7 @@ namespace JsonDatabaseTestbed
                 {
                     try
                     {
-                        (command as ILeafCliCommand).Execute().Wait();
+                        (command as ILeafCliCommand).Execute(prompt).Wait();
                     }
                     catch (Exception ex)
                     {

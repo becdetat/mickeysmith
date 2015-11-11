@@ -9,5 +9,10 @@ namespace JsonDatabaseTestbed
         {
             return matches.Any(match => input.Trim().Equals(match.Trim(), StringComparison.InvariantCultureIgnoreCase));
         }
+
+        public static bool RoughlyStartsWith(this string input, string startsWith)
+        {
+            return input.StartsWith(startsWith, StringComparison.InvariantCultureIgnoreCase);
+        }
     }
 }

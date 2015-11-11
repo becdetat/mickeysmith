@@ -17,7 +17,7 @@ namespace JsonDatabaseTestbed.Commands.Set
             _sessionFactory = sessionFactory;
         }
 
-        public async Task Execute()
+        public async Task Execute(string command)
         {
             Cmd.WriteLine("Key:");
             var key = Cmd.Prompt();

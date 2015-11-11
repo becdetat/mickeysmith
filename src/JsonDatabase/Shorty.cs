@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -34,39 +36,67 @@ namespace JsonDatabase
             }
         }
 
-        public Task ExecuteCommandAsync(string commandText, object parameters = null) => ExecuteCommandAsync(commandText, parameters, ConnectionString);
-        public Task ExecuteCommandOnMasterAsync(string commandText, object parameters = null) => ExecuteCommandAsync(commandText, parameters, MasterConnectionString);
+        public Task ExecuteCommandAsync(string sql, object parameters = null) => ExecuteCommandAsync(sql, parameters, ConnectionString);
+        public Task ExecuteCommandOnMasterAsync(string sql, object parameters = null) => ExecuteCommandAsync(sql, parameters, MasterConnectionString);
 
-        private static async Task ExecuteCommandAsync(string commandText, object parameters, string connectionString)
+        private static async Task ExecuteCommandAsync(string sql, object parameters, string connectionString)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                using (var command = CreateCommand(connection, commandText, parameters))
+                using (var command = CreateCommand(connection, sql, parameters))
                 {
                     await command.ExecuteNonQueryAsync();
                 }
             }
         }
 
-        public Task<dynamic> ExecuteScalarAsync(string commandText) => ExecuteScalarAsync(commandText, ConnectionString);
-        public Task<dynamic> ExecuteScalarOnMasterAsync(string commandText) => ExecuteScalarAsync(commandText, MasterConnectionString);
+        public Task<dynamic> ExecuteScalarAsync(string sql, object parameters = null) => ExecuteScalarAsync(sql, parameters, ConnectionString);
+        public Task<dynamic> ExecuteScalarOnMasterAsync(string sql, object parameters = null) => ExecuteScalarAsync(sql, parameters, MasterConnectionString);
 
-        private static async Task<dynamic> ExecuteScalarAsync(string commandText, string connectionString)
+        private static async Task<dynamic> ExecuteScalarAsync(string sql, object parameters, string connectionString)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                using (var command = connection.CreateCommand())
+                using (var command = CreateCommand(connection, sql, parameters))
                 {
-                    command.CommandText = commandText;
-
                     dynamic result = await command.ExecuteScalarAsync();
 
                     return result;
                 }
             }
+        }
+
+        public Task<IEnumerable<dynamic>> ExecuteQueryAsync(string sql, object parameters = null) => ExecuteQueryAsync(sql, parameters, ConnectionString);
+        public Task<IEnumerable<dynamic>> ExecuteQueryOnMasterAsync(string sql, object parameters = null) => ExecuteQueryAsync(sql, parameters, MasterConnectionString);
+
+        static async Task<IEnumerable<dynamic>> ExecuteQueryAsync(string sql, object parameters, string connectionString)
+        {
+            var results = new List<dynamic>();
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = CreateCommand(connection, sql, parameters))
+                    using (var reader = await command.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        var item = (new ExpandoObject())  as IDictionary<string, object>;
+
+                        for (var i = 0; i < reader.FieldCount; i++)
+                        {
+                            item.Add(reader.GetName(i), DBNull.Value.Equals(reader[i]) ? null : reader[i]);
+                        }
+
+                        results.Add(item);
+                    }
+                }
+            }
+
+            return results;
         }
 
         static SqlCommand CreateCommand(SqlConnection connection, string sql, object parameters)
