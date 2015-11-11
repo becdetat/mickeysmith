@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JsonDatabaseTestbed
+namespace MickeySmithTestbed
 {
     public class Benchmark : IDisposable
     {

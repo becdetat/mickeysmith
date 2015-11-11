@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace JsonDatabaseTestbed
+namespace MickeySmithTestbed
 {
     public static partial class StringExtensions
     {

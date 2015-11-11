@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using JsonDatabase;
+using MickeySmith;
 
-namespace JsonDatabaseTestbed.Commands.Set
+namespace MickeySmithTestbed.Commands.Set
 {
     public class SetArrayCommand : ILeafCliCommand
     {

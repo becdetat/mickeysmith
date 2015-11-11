@@ -6,12 +6,13 @@ using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JsonDatabase
+namespace MickeySmith
 {
     // Largely lifted from DannyBoy - https://github.com/swxben/danny-boy
-    internal class Shorty
+    // This will be DannyPink - https://github.com/bendetat/dannypink
+    internal class Danny
     {
-        public Shorty(string connectionString)
+        public Danny(string connectionString)
         {
             ConnectionString = connectionString;
         }

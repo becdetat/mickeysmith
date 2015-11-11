@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace JsonDatabase
+namespace MickeySmith
 {
     public interface IQuery
     {
@@ -13,11 +13,11 @@ namespace JsonDatabase
     internal class Query : IQuery
     {
         private readonly string _query;
-        private readonly Shorty _shorty;
+        private readonly Danny _danny;
 
-        public Query(Shorty shorty, string query)
+        public Query(Danny danny, string query)
         {
-            _shorty = shorty;
+            _danny = danny;
             _query = query;
         }
 
@@ -29,7 +29,7 @@ FROM [JsonStore]
 WHERE [KEY] LIKE @pattern ESCAPE '~'
                 ";
             var pattern = MakeQuerySafe();
-            var results = (await _shorty.ExecuteQueryAsync(sql, new {pattern})).ToArray();
+            var results = (await _danny.ExecuteQueryAsync(sql, new {pattern})).ToArray();
 
             return results
                 .ToDictionary(

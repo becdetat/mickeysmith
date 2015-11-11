@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
 using Autofac;
-using JsonDatabase;
+using MickeySmith;
 
-namespace JsonDatabaseTestbed
+namespace MickeySmithTestbed
 {
     public static class IoC
     {

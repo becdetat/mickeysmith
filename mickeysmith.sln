@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonDatabase", "src\JsonDatabase\JsonDatabase.csproj", "{3D9FCFEE-1179-4C72-9940-0AE8966A1E8C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MickeySmith", "src\JsonDatabase\MickeySmith.csproj", "{3D9FCFEE-1179-4C72-9940-0AE8966A1E8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonDatabaseTestbed", "src\JsonDatabaseTestbed\JsonDatabaseTestbed.csproj", "{1690B987-E9D7-4C8F-871D-0D6F98F923DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MickeySmithTestbed", "src\JsonDatabaseTestbed\MickeySmithTestbed.csproj", "{1690B987-E9D7-4C8F-871D-0D6F98F923DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

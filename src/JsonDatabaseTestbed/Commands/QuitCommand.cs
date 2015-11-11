@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace JsonDatabaseTestbed.Commands
+namespace MickeySmithTestbed.Commands
 {
     public class QuitCommand : ILeafCliCommand
     {

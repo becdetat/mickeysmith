@@ -7,8 +7,8 @@
     <ProjectGuid>{1690B987-E9D7-4C8F-871D-0D6F98F923DD}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JsonDatabaseTestbed</RootNamespace>
-    <AssemblyName>JsonDatabaseTestbed</AssemblyName>
+    <RootNamespace>MickeySmithTestbed</RootNamespace>
+    <AssemblyName>MickeySmithTestbed</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -73,9 +73,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JsonDatabase\JsonDatabase.csproj">
+    <ProjectReference Include="..\JsonDatabase\MickeySmith.csproj">
       <Project>{3D9FCFEE-1179-4C72-9940-0AE8966A1E8C}</Project>
-      <Name>JsonDatabase</Name>
+      <Name>MickeySmith</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

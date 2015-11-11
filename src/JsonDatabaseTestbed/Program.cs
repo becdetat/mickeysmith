@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using Autofac;
-using JsonDatabase;
-using JsonDatabaseTestbed.Commands;
+using MickeySmith;
+using MickeySmithTestbed.Commands;
 
-namespace JsonDatabaseTestbed
+namespace MickeySmithTestbed
 {
     internal class Program
     {
-        private const string ConnectionString = @"Data Source=.\sqlexpress;Initial Catalog=JsonDatabaseTest;Integrated Security=True";
+        private const string ConnectionString = @"Data Source=.\sqlexpress;Initial Catalog=MickeySmithTest;Integrated Security=True";
 
         private static void Main(string[] args)
         {

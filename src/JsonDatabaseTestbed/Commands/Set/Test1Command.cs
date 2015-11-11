@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using JsonDatabase;
+using MickeySmith;
 
-namespace JsonDatabaseTestbed.Commands.Set
+namespace MickeySmithTestbed.Commands.Set
 {
     public class Test1Command : ILeafCliCommand
     {

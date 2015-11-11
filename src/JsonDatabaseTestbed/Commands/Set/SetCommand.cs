@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JsonDatabaseTestbed.Commands.Set
+namespace MickeySmithTestbed.Commands.Set
 {
     public class SetCommand : IBranchCliCommand
     {

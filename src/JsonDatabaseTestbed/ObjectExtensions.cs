@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 
-namespace JsonDatabaseTestbed
+namespace MickeySmithTestbed
 {
     public static class ObjectExtensions
     {

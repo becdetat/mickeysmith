@@ -1,21 +1,21 @@
 ﻿using System.Threading.Tasks;
 
-namespace JsonDatabase
+namespace MickeySmith
 {
     public class Bootstrapper
     {
-        private readonly Shorty _shorty;
+        private readonly Danny _danny;
 
         public Bootstrapper(string connectionString)
         {
-            _shorty = new Shorty(connectionString);
+            _danny = new Danny(connectionString);
         }
 
-        public string ConnectionString => _shorty.ConnectionString;
+        public string ConnectionString => _danny.ConnectionString;
 
         public bool DatabaseExists()
         {
-            var task = _shorty.ExecuteScalarOnMasterAsync($"SELECT COUNT(*) FROM [sys].[databases] WHERE [Name] = '{_shorty.DatabaseName}'");
+            var task = _danny.ExecuteScalarOnMasterAsync($"SELECT COUNT(*) FROM [sys].[databases] WHERE [Name] = '{_danny.DatabaseName}'");
 
             task.Wait();
 
@@ -24,19 +24,19 @@ namespace JsonDatabase
 
         public async Task DropDatabaseAsync()
         {
-            await _shorty.ExecuteCommandOnMasterAsync($@"ALTER DATABASE [{_shorty.DatabaseName}] SET single_user WITH rollback immediate");
-            await _shorty.ExecuteCommandOnMasterAsync($"DROP DATABASE [{_shorty.DatabaseName}]");
+            await _danny.ExecuteCommandOnMasterAsync($@"ALTER DATABASE [{_danny.DatabaseName}] SET single_user WITH rollback immediate");
+            await _danny.ExecuteCommandOnMasterAsync($"DROP DATABASE [{_danny.DatabaseName}]");
         }
 
         public async Task CreateDatabaseAsync()
         {
-            await _shorty.ExecuteCommandOnMasterAsync($"CREATE DATABASE [{_shorty.DatabaseName}]");
+            await _danny.ExecuteCommandOnMasterAsync($"CREATE DATABASE [{_danny.DatabaseName}]");
             await this.PerformMigrationsAsync();
         }
 
         private Task PerformMigrationsAsync()
         {
-            return _shorty.ExecuteCommandAsync(@"
+            return _danny.ExecuteCommandAsync(@"
 CREATE TABLE JsonStore(
     [Key] NVARCHAR(MAX) NOT NULL,
     [Value] NVARCHAR(MAX)

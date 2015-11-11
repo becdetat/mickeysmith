@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using JsonDatabase;
+using MickeySmith;
 
-namespace JsonDatabaseTestbed.Commands
+namespace MickeySmithTestbed.Commands
 {
     public class RecreateDatabaseCommand : ILeafCliCommand
     {
