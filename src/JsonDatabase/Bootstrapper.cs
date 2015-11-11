@@ -1,5 +1,4 @@
-﻿using System.Data.SqlClient;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace JsonDatabase
 {
@@ -43,77 +42,6 @@ CREATE TABLE JsonStore(
     [Value] NVARCHAR(MAX)
 )
                 ");
-        }
-    }
-
-    public class Session
-    {
-        public Session(string connectionString)
-        {
-        }
-    }
-
-    internal class Shorty
-    {
-        public Shorty(string connectionString)
-        {
-            ConnectionString = connectionString;
-        }
-
-        public string ConnectionString { get; }
-
-        private string MasterConnectionString
-        {
-            get
-            {
-                var builder = new SqlConnectionStringBuilder(ConnectionString) {InitialCatalog = "master"};
-                return builder.ConnectionString;
-            }
-        }
-
-        public string DatabaseName
-        {
-            get
-            {
-                var builder = new SqlConnectionStringBuilder(ConnectionString);
-                return builder.InitialCatalog;
-            }
-        }
-
-        public Task ExecuteCommandAsync(string commandText) => ExecuteCommandAsync(commandText, ConnectionString);
-        public Task ExecuteCommandOnMasterAsync(string commandText) => ExecuteCommandAsync(commandText, MasterConnectionString);
-
-        private static async Task ExecuteCommandAsync(string commandText, string connectionString)
-        {
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                using (var command = connection.CreateCommand())
-                {
-                    command.CommandText = commandText;
-
-                    await command.ExecuteNonQueryAsync();
-                }
-            }
-        }
-
-        public Task<dynamic> ExecuteScalarAsync(string commandText) => ExecuteScalarAsync(commandText, ConnectionString);
-        public Task<dynamic> ExecuteScalarOnMasterAsync(string commandText) => ExecuteScalarAsync(commandText, MasterConnectionString);
-
-        private static async Task<dynamic> ExecuteScalarAsync(string commandText, string connectionString)
-        {
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                using (var command = connection.CreateCommand())
-                {
-                    command.CommandText = commandText;
-
-                    dynamic result = await command.ExecuteScalarAsync();
-
-                    return result;
-                }
-            }
         }
     }
 }

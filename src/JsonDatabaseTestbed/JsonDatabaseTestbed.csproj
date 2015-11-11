@@ -48,11 +48,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Benchmark.cs" />
     <Compile Include="Cli.cs" />
     <Compile Include="Cmd.cs" />
     <Compile Include="Commands\QuitCommand.cs" />
     <Compile Include="Commands\RecreateDatabaseCommand.cs" />
+    <Compile Include="Commands\Set\SetArrayCommand.cs" />
     <Compile Include="Commands\Set\SetCommand.cs" />
+    <Compile Include="Commands\Set\SetIntegerCommand.cs" />
+    <Compile Include="Commands\Set\SetStringCommand.cs" />
+    <Compile Include="Commands\Set\Test1Command.cs" />
+    <Compile Include="Commands\Set\Test2Command.cs" />
     <Compile Include="IoC.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Program.cs" />
