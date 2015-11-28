@@ -7,9 +7,9 @@ using MickeySmithTestbed.Commands;
 
 namespace MickeySmithTestbed
 {
-    internal class Program
+    public class Program
     {
-        private const string ConnectionString = @"Data Source=.\sqlexpress;Initial Catalog=MickeySmithTest;Integrated Security=True";
+        public const string ConnectionString = @"Data Source=.\sqlexpress;Initial Catalog=MickeySmithTest;Integrated Security=True";
 
         private static void Main(string[] args)
         {
@@ -23,7 +23,7 @@ namespace MickeySmithTestbed
 
                 container = IoC.HaveYouAnyIoC(bootstrapper);
 
-                if (!bootstrapper.DatabaseExists()) bootstrapper.CreateDatabaseAsync().Wait();
+                if (!bootstrapper.DatabaseExists()) bootstrapper.CreateDatabase();
             }
             catch (Exception ex)
             {

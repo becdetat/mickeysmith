@@ -7,16 +7,17 @@ namespace MickeySmithTestbed.Commands.Set
     public class SetStringCommand : ILeafCliCommand
     {
         private readonly Func<Session> _sessionFactory;
-        public string Description => "\tstring\t\tSet string";
-        public Type ParentCommandType => typeof(SetCommand);
-        public bool CanHandle(string command) => command.IsRoughly("string");
 
         public SetStringCommand(Func<Session> sessionFactory)
         {
             _sessionFactory = sessionFactory;
         }
 
-        public async Task Execute(string command)
+        public string Description => "\tstring\t\tSet string";
+        public Type ParentCommandType => typeof (SetTestsCommand);
+        public bool CanHandle(string command) => command.IsRoughly("string");
+
+        public Task Execute(string command)
         {
             Cmd.WriteLine("Key:");
             var key = Cmd.Prompt();
@@ -28,8 +29,10 @@ namespace MickeySmithTestbed.Commands.Set
             {
                 var session = _sessionFactory();
 
-                await session.SetAsync(key, value);
+                session.Set(key, value);
             }
+
+            return Task.CompletedTask;
         }
     }
 }

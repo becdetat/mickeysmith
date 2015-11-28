@@ -17,10 +17,12 @@ namespace MickeySmithTestbed.Commands
         public Type ParentCommandType => null;
         public bool CanHandle(string command) => command.IsRoughly("recreate");
 
-        public async Task Execute(string command)
+        public Task Execute(string command)
         {
-            await _bootstrapper.DropDatabaseAsync();
-            await _bootstrapper.CreateDatabaseAsync();
+            _bootstrapper.DropDatabase();
+            _bootstrapper.CreateDatabase();
+
+            return Task.CompletedTask;
         }
     }
 }

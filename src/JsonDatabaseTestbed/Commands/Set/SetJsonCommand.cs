@@ -15,16 +15,18 @@ namespace MickeySmithTestbed.Commands.Set
         }
 
         public string Description => "\tjson\t\tSet JSON";
-        public Type ParentCommandType => typeof (SetCommand);
+        public Type ParentCommandType => typeof (SetTestsCommand);
         public bool CanHandle(string command) => command.RoughlyStartsWith("json ");
 
-        public async Task Execute(string command)
+        public Task Execute(string command)
         {
             var session = _sessionFactory();
             var key = GetKey(command);
             var value = GetValue(command);
 
-            await session.SetAsync(key, value);
+            session.Set(key, value);
+
+            return Task.CompletedTask;
         }
 
         private static string GetKey(string command)

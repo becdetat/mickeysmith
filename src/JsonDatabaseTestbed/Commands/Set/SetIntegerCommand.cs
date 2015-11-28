@@ -8,7 +8,7 @@ namespace MickeySmithTestbed.Commands.Set
     {
         private readonly Func<Session> _sessionFactory;
         public string Description => "\tint\t\tSet integer";
-        public Type ParentCommandType => typeof(SetCommand);
+        public Type ParentCommandType => typeof(SetTestsCommand);
         public bool CanHandle(string command) => command.IsRoughly("integer");
 
         public SetIntegerCommand(Func<Session> sessionFactory)
@@ -16,7 +16,7 @@ namespace MickeySmithTestbed.Commands.Set
             _sessionFactory = sessionFactory;
         }
 
-        public async Task Execute(string command)
+        public Task Execute(string command)
         {
             Cmd.WriteLine("Key:");
             var key = Cmd.Prompt();
@@ -28,8 +28,10 @@ namespace MickeySmithTestbed.Commands.Set
             {
                 var session = _sessionFactory();
 
-                await session.SetAsync(key, value);
+                 session.Set(key, value);
             }
+
+            return Task.CompletedTask;
         }
     }
 }

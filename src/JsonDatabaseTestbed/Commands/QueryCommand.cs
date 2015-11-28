@@ -18,7 +18,7 @@ namespace MickeySmithTestbed.Commands
             _sessionFactory = sessionFactory;
         }
 
-        public async Task Execute(string command)
+        public Task Execute(string command)
         {
             var session = _sessionFactory();
             var query = GetQuery(command);
@@ -27,7 +27,7 @@ namespace MickeySmithTestbed.Commands
 
             using (new Benchmark())
             {
-                results = await session.Query(query).EndAsync();
+                results = session.Query(query).End();
             }
 
             if (!results.Any())
@@ -44,6 +44,8 @@ namespace MickeySmithTestbed.Commands
                     Cmd.WriteLine(result.Value.ToString());
                 }
             }
+
+            return Task.CompletedTask;
         }
 
         static string GetQuery(string command)

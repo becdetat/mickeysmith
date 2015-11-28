@@ -8,7 +8,7 @@ namespace MickeySmithTestbed.Commands.Set
     {
         private readonly Func<Session> _sessionFactory;
         public string Description => "\ttest1\t\tTest 1";
-        public Type ParentCommandType => typeof(SetCommand);
+        public Type ParentCommandType => typeof(SetTestsCommand);
         public bool CanHandle(string command) => command.IsRoughly("test1");
 
         public Test1Command(Func<Session> sessionFactory)
@@ -16,18 +16,20 @@ namespace MickeySmithTestbed.Commands.Set
             _sessionFactory = sessionFactory;
         }
 
-        public async Task Execute(string command)
+        public Task Execute(string command)
         {
             using (new Benchmark())
             {
                 var session = _sessionFactory();
 
-                await session.SetAsync("customer_1", new
+                 session.Set("customer_1", new
                 {
                     name = "Tokiflonk Twistgrinder",
                     currency = "AUD"
                 });
             }
+
+            return Task.CompletedTask;
         }
     }
 }

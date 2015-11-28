@@ -17,7 +17,7 @@ namespace MickeySmithTestbed.Commands
         public Type ParentCommandType => null;
         public bool CanHandle(string command) => command.IsRoughly("get") || command.RoughlyStartsWith("get ");
 
-        public async Task Execute(string command)
+        public Task Execute(string command)
         {
             var session = _sessionFactory();
 
@@ -27,7 +27,7 @@ namespace MickeySmithTestbed.Commands
 
             using (new Benchmark())
             {
-                result = await session.Get(key);
+                result = session.Get(key);
             }
 
             if (result == null)
@@ -39,6 +39,8 @@ namespace MickeySmithTestbed.Commands
                 Cmd.WriteLine($"Type: {result.GetType()}");
                 Cmd.WriteLine(result.ToString());
             }
+
+            return Task.CompletedTask;
         }
 
         static string GetKey(string command)

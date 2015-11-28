@@ -9,7 +9,7 @@ namespace MickeySmithTestbed.Commands.Set
     {
         private readonly Func<Session> _sessionFactory;
         public string Description => "\tarray\t\tSet array";
-        public Type ParentCommandType => typeof(SetCommand);
+        public Type ParentCommandType => typeof(SetTestsCommand);
         public bool CanHandle(string command) => command.IsRoughly("array");
 
         public SetArrayCommand(Func<Session> sessionFactory)
@@ -17,7 +17,7 @@ namespace MickeySmithTestbed.Commands.Set
             _sessionFactory = sessionFactory;
         }
 
-        public async Task Execute(string command)
+        public Task Execute(string command)
         {
             Cmd.WriteLine("Key:");
             var key = Cmd.Prompt();
@@ -30,8 +30,10 @@ namespace MickeySmithTestbed.Commands.Set
             {
                 var session = _sessionFactory();
 
-                await session.SetAsync(key, values);
+                session.Set(key, values);
             }
+
+            return Task.CompletedTask;
         }
     }
 }

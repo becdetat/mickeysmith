@@ -1,19 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace MickeySmith
 {
     public interface IQuery
     {
-        Task<IDictionary<string, dynamic>> EndAsync();
+        IDictionary<string, dynamic> End();
     }
 
     internal class Query : IQuery
     {
-        private readonly string _query;
         private readonly Danny _danny;
+        private readonly string _query;
 
         public Query(Danny danny, string query)
         {
@@ -21,7 +20,7 @@ namespace MickeySmith
             _query = query;
         }
 
-        public async Task<IDictionary<string, dynamic>> EndAsync()
+        public IDictionary<string, dynamic> End()
         {
             var sql = @"
 SELECT [Key], [Value]
@@ -29,7 +28,7 @@ FROM [JsonStore]
 WHERE [KEY] LIKE @pattern ESCAPE '~'
                 ";
             var pattern = MakeQuerySafe();
-            var results = (await _danny.ExecuteQueryAsync(sql, new {pattern})).ToArray();
+            var results = _danny.ExecuteQuery(sql, new {pattern}).ToArray();
 
             return results
                 .ToDictionary(

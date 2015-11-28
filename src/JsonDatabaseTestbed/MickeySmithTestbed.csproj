@@ -56,11 +56,15 @@
     <Compile Include="Cli.cs" />
     <Compile Include="Cmd.cs" />
     <Compile Include="Commands\GetCommand.cs" />
+    <Compile Include="Commands\IncrCommand.cs" />
+    <Compile Include="Commands\IncrTests\IncrMultiThreadCommand.cs" />
+    <Compile Include="Commands\IncrTests\IncrTestsCommand.cs" />
     <Compile Include="Commands\QueryCommand.cs" />
     <Compile Include="Commands\QuitCommand.cs" />
     <Compile Include="Commands\RecreateDatabaseCommand.cs" />
+    <Compile Include="Commands\SetCommand.cs" />
     <Compile Include="Commands\Set\SetArrayCommand.cs" />
-    <Compile Include="Commands\Set\SetCommand.cs" />
+    <Compile Include="Commands\Set\SetTestsCommand.cs" />
     <Compile Include="Commands\Set\SetIntegerCommand.cs" />
     <Compile Include="Commands\Set\SetJsonCommand.cs" />
     <Compile Include="Commands\Set\SetStringCommand.cs" />
